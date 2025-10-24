@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missing Child Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background-color: #f9fafc;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      padding: 20px 60px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 30px;
+      font-weight: 800;
+      color: #1e3c72;
+      letter-spacing: 1.5px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      margin-left: 40px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #333; /* default link color */
+      font-weight: 600;
+      font-size: 18px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar ul li a:hover {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      color: #fff;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Active page link */
+    .navbar ul li a.active {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      color: #fff;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">Missing Child</div>
+    <ul>
+      <li>
+        <a href="{% url 'homepage' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a>
+      </li>
+      <li>
+        <a href="{% url 'missingchildreport' %}" class="{% if request.path == '/report/' %}active{% endif %}">Report Missing Child</a>
+      </li>
+      <li>
+        <a href="{% url 'missingdata' %}" >Missing Children Data</a>
+      </li>
+      <li>
+        <a href="{% url 'report_upload' %}">Report</a>
+      </li>
+    </ul>
+  </nav>
+
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload & Match Photo | Missing Child Detection</title>
+
+  <!-- ✅ Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f4f8fb;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px 50px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e3c72;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    form input[type="text"],
+    form input[type="tel"],
+    form input[type="file"],
+    form button {
+      font-size: 16px;
+      width: 80%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    form button {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .location-box {
+      margin-top: 20px;
+      background: #e8f4ff;
+      border: 1px solid #a1c8ff;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      color: #003366;
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #map {
+      height: 350px;
+      width: 100%;
+      margin: 10px 0;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    #current-address-display {
+      font-weight: 500;
+      padding: 5px;
+      font-size: 1em;
+      color: #003366;
+      text-align: center;
+      width: 100%;
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .images {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .images img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 3px solid #e0e0e0;
+    }
+
+    .matched-details {
+      background-color: #e6ffed;
+      border: 2px solid #1e7a1e;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+
+    .no-match {
+      background-color: #ffeaea;
+      border: 2px solid #ff4c4c;
+      color: #a10000;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+{% include 'navbar.html' %}
+
+<div class="container">
+  <h1>Report a Missing Child</h1>
+  <h3>Upload a recent photo, enter your details, and <strong>confirm the location by dragging the pin.</strong></h3>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="location-box">
+      <p>📍 <strong>Detected Location (Drag pin to correct)</strong></p>
+      <div id="map"></div>
+      <p id="current-address-display">Fetching location...</p>
+    </div>
+
+    <input type="hidden" id="latitude" name="latitude">
+    <input type="hidden" id="longitude" name="longitude">
+    <input type="hidden" id="address" name="address">
+
+    <button type="submit">Upload & Match</button>
+  </form>
+
+  {% if result %}
+    <div class="result">{{ result }}</div>
+  {% endif %}
+
+  {% if uploaded_image_url or matched_image_url %}
+  <div class="images">
+    {% if uploaded_image_url %}
+      <div>
+        <p>📤 Uploaded Photo</p>
+        <img src="{{ uploaded_image_url }}" alt="Uploaded Photo">
+      </div>
+    {% endif %}
+    {% if matched_image_url %}
+      <div>
+        <p>✅ Matched Child Photo</p>
+        <img src="{{ matched_image_url }}" alt="Matched Photo">
+      </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if matched_child %}
+    <div class="matched-details">
+      <h2>Match Found!</h2>
+      <ul>
+        <li><strong>Name:</strong> {{ matched_child.child_name }}</li>
+        <li><strong>Age:</strong> {{ matched_child.age }}</li>
+        <li><strong>Last Seen Area:</strong> {{ matched_child.last_area }}</li>
+      </ul>
+    </div>
+  {% elif result and "No match" in result %}
+    <div class="no-match">
+      <h3>No Matching Record Found</h3>
+    </div>
+  {% endif %}
+</div>
+
+{% include 'footer.html' %}
+
+<!-- ✅ Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const latInput = document.getElementById('latitude');
+  const lonInput = document.getElementById('longitude');
+  const addrInput = document.getElementById('address');
+  const addressDisplay = document.getElementById('current-address-display');
+  let map, marker;
+
+  function fetchAddress(lat, lon) {
+    addressDisplay.innerHTML = `Loading address for ${lat.toFixed(6)}, ${lon.toFixed(6)}...`;
+    fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+      .then(res => res.json())
+      .then(data => {
+        const conciseAddress = data.display_name || "Address not found";
+        latInput.value = lat.toFixed(6);
+        lonInput.value = lon.toFixed(6);
+        addrInput.value = conciseAddress;
+        addressDisplay.innerHTML = `📍 <strong>Confirmed Location:</strong> ${conciseAddress}`;
+      })
+      .catch(() => {
+        const coords = `${lat.toFixed(6)}, ${lon.toFixed(6)}`;
+        addrInput.value = coords;
+        addressDisplay.innerHTML = `⚠️ Address lookup failed. Using coordinates: ${coords}`;
+      });
+  }
+
+  function initMap(lat, lon, status) {
+    if (!map) {
+      map = L.map('map').setView([lat, lon], 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+      marker = L.marker([lat, lon], { draggable: true }).addTo(map);
+      marker.on('dragend', e => {
+        const pos = marker.getLatLng();
+        fetchAddress(pos.lat, pos.lng);
+      });
+    } else {
+      map.setView([lat, lon], 13);
+      marker.setLatLng([lat, lon]);
+    }
+    addressDisplay.innerHTML = `${status}<br>Starting Coords: (${lat.toFixed(6)}, ${lon.toFixed(6)})`;
+    fetchAddress(lat, lon);
+  }
+
+  // ✅ Request Live Location
+  if (navigator.geolocation) {
+    addressDisplay.innerHTML = "📡 Detecting current location...";
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        const { latitude: lat, longitude: lon, accuracy } = pos.coords;
+        console.log("[GEOLOCATION SUCCESS]", lat, lon, "Accuracy:", accuracy);
+        const status = accuracy > 5000
+          ? "⚠️ Low Accuracy (Approximate - please drag pin)"
+          : `✅ High Accuracy (${accuracy.toFixed(0)}m)`;
+        initMap(lat, lon, status);
+      },
+      err => {
+        console.error("[GEOLOCATION ERROR]", err);
+        const fallbackLat = 16.5417;
+        const fallbackLon = 81.5208;
+        const msg = err.code === err.PERMISSION_DENIED
+          ? "❌ Permission denied — please allow location access in browser settings."
+          : err.code === err.TIMEOUT
+            ? "⏳ Location request timed out — please drag the pin manually."
+            : "⚠️ Unable to access location — using fallback coordinates.";
+        addressDisplay.innerHTML = msg;
+        initMap(fallbackLat, fallbackLon, msg);
+      },
+      { enableHighAccuracy: true, timeout: 30000, maximumAge: 0 }
+    );
+  } else {
+    const fallbackLat = 16.5417;
+    const fallbackLon = 81.5208;
+    initMap(fallbackLat, fallbackLon, "⚠️ Geolocation not supported. Drag the pin to your location.");
+  }
+});
+</script>
+
+</body>
+</html>

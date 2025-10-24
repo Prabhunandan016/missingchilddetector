@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Missing Child</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background-color: #f9fafc;
+      color: #333;
+      line-height: 1.6;
+      padding: 0;
+    }
+
+    h1, h2 {
+      color: #1e3c72;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .form-section {
+      margin-bottom: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    label span.required {
+      color: red;
+      margin-left: 4px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    select,
+    input[type="file"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input:focus,
+    select:focus,
+    input[type="file"]:focus {
+      border-color: #1e3c72;
+      box-shadow: 0 0 6px rgba(30, 60, 114, 0.3);
+      outline: none;
+    }
+
+    .btn-submit {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+    }
+
+    input[type="file"] {
+      padding: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar Include -->
+  {% include 'navbar.html' %}
+
+  <!-- Form Section -->
+  <form action="{% url 'missingchildreport' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <!-- Missing Person Details -->
+    <div class="form-section">
+      <h1>Missing Person Details</h1>
+      <div class="form-group">
+        <label for="child_name">Name of Missing Child <span class="required">*</span></label>
+        <input type="text" id="child_name" name="child_name" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Age <span class="required">*</span></label>
+        <input type="number" id="age" name="age" required>
+      </div>
+      <div class="form-group">
+        <label for="last_area">Last Roamed Area <span class="required">*</span></label>
+        <input type="text" id="last_area" name="last_area" required>
+      </div>
+      <div class="form-group">
+        <label for="moles">Moles / Identifying Marks <span class="required">*</span></label>
+        <input type="text" id="moles" name="moles" required>
+      </div>
+      <div class="form-group">
+        <label for="dress_color">Last Seen Dress Color <span class="required">*</span></label>
+        <input type="text" id="dress_color" name="dress_color" required>
+      </div>
+      <div class="form-group">
+        <label for="child_photo">Photo of Child <span class="required">*</span></label>
+        <input type="file" id="child_photo" name="child_photo" accept="image/*" required>
+      </div>
+      <div class="form-group">
+        <label for="aadhaar_photo">Aadhaar Card Photo <span class="required">*</span></label>
+        <input type="file" id="aadhaar_photo" name="aadhaar_photo" accept="image/*" required>
+      </div>
+      <div class="form-group">
+        <label for="fir_copy">FIR Copy (if filed)</label>
+        <input type="file" id="fir_copy" name="fir_copy" accept=".pdf,.jpg,.png">
+      </div>
+
+    </div>
+
+    <!-- Reporting Person Details -->
+    <div class="form-section">
+      <h2>Reporting Person Details</h2>
+      <div class="form-group">
+        <label for="reporter_name">Name <span class="required">*</span></label>
+        <input type="text" id="reporter_name" name="reporter_name" required>
+      </div>
+      <div class="form-group">
+        <label for="relation">Relation <span class="required">*</span></label>
+        <select id="relation" name="relation" required>
+          <option value="" disabled selected>Select Relation</option>
+          <option value="father">Father</option>
+          <option value="mother">Mother</option>
+          <option value="brother">Brother</option>
+          <option value="others">Others</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number <span class="required">*</span></label>
+        <input type="text" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit">Submit Report</button>
+
+  </form>
+
+  {% include "footer.html" %}
+</body>
+</html>

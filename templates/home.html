@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include "navbar.html" %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missing Child Portal - Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background-color: #f9fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 40px 60px 40px;
+      text-align: center;
+      background: #ffffff;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      color: #1e3c72;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      color: #555;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      color: #fff;
+      padding: 12px 28px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+
+    section h2 {
+      font-size: 28px;
+      color: #1e3c72;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    section p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .useful-ways {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .way-card {
+      background: #f1f5f9;
+      padding: 20px;
+      border-radius: 12px;
+      flex: 1 1 250px;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .way-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .way-card h3 {
+      color: #1e3c72;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .way-card p {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Welcome to Missing Child Portal</h1>
+    <p>
+      This platform helps families and authorities report, track, and find missing children across the country. 
+      Explore the portal to report a missing child, view missing children data, and stay informed about child safety measures.
+    </p>
+    <a href="{% url 'report_upload' %}" class="btn-primary">Report a Missing Child</a>
+  </div>
+
+  <!-- Section: How it is Useful -->
+  <section>
+    <h2>How This Portal is Useful</h2>
+    <p>
+      The Missing Child Portal is designed to connect families, communities, and authorities in the search and reporting of missing children.
+      By using the portal, users can take immediate action, stay informed, and contribute to child safety initiatives.
+    </p>
+    <div class="useful-ways">
+      <div class="way-card">
+        <h3>Report Missing Children</h3>
+        <p>Submit detailed information about missing children to alert authorities and communities immediately.</p>
+      </div>
+      <div class="way-card">
+        <h3>View Missing Children Data</h3>
+        <p>Access a comprehensive database of reported missing children to stay informed and help locate them.</p>
+      </div>
+      <div class="way-card">
+        <h3>Stay Updated on Safety Tips</h3>
+        <p>Learn preventive measures, safety tips, and guidelines to protect children from potential dangers.</p>
+      </div>
+      <div class="way-card">
+        <h3>Connect With Authorities</h3>
+        <p>Coordinate with local authorities and organizations for faster action in locating missing children.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Ways to Use the Portal -->
+  <section>
+    <h2>Ways to Use the Portal</h2>
+    <p>
+      The portal is simple and user-friendly. You can report missing children, check recent cases, and follow up on ongoing investigations.  
+      Authorities and NGOs can also use it to coordinate recovery efforts effectively.
+    </p>
+    <div class="useful-ways">
+      <div class="way-card">
+        <h3>Step 1: Report a Child</h3>
+        <p>Fill out the online form with all the required details about the missing child.</p>
+      </div>
+      <div class="way-card">
+        <h3>Step 2: Review Reports</h3>
+        <p>Check the portal for newly reported missing children in your area.</p>
+      </div>
+      <div class="way-card">
+        <h3>Step 3: Support Search Efforts</h3>
+        <p>Share reports and information with local communities to aid in locating children.</p>
+      </div>
+      <div class="way-card">
+        <h3>Step 4: Stay Informed</h3>
+        <p>Access safety guidelines and preventive tips to avoid similar situations in the future.</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+{% include "footer.html" %}
+</html>

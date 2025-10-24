@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer Example</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background-color: #f9fafc;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    footer {
+      background: #ffffff;
+      padding: 30px 60px;
+      box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.08);
+      margin-top: auto;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1e3c72;
+      margin-bottom: 12px;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-col h4 {
+      font-size: 16px;
+      color: #1e3c72;
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: #2a5298;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      border-top: 1px solid #ddd;
+      padding-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  {% comment %} <main style="flex: 1; padding:40px; text-align:center;">
+    <h1>Page Content Area</h1>
+    <p>This is where your main page content goes.</p>
+  </main> {% endcomment %}
+
+  <footer>
+    <div class="footer-container">
+      <!-- Logo / About -->
+      <div class="footer-col">
+        <div class="footer-logo">Missing Child</div>
+        <p style="font-size:14px; color:#555;">
+          A national portal dedicated to helping families report and find missing children.  
+          Together, we can make a difference.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'homepage' %}">Home</a></li>
+          <li><a href="{% url 'missingchildreport' %}">Report Missing Child</a></li>
+          <li><a href="{% url 'missingdata' %}">Missing Children Data</a></li>
+          <li><a href="{% url 'report_upload' %}">Report</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul>
+          <li><b>If you Have Queries Contact Us</b></li>
+          <li>Email: prabhunandan016@gmail.com</li>
+          <li>Phone: 9391552933</li>
+          <li>Address: bhimavaram</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2025 Missing Child | All Rights Reserved
+    </div>
+  </footer>
+</body>
+</html>

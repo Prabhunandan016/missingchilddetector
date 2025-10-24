@@ -1,0 +1,93 @@
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Report Submitted</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>✅ Your missing child report has been submitted successfully.</h1>
+    <a href="{% url 'homepage' %}">Go back to Home</a>
+    {% include 'footer.html' %}
+</body>
+</html> {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Submitted Successfully</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f4f8fb;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .success-box {
+            background: #e6ffed;
+            color: #056608;
+            padding: 40px 60px;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .success-box h1 {
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .success-box p {
+            font-size: 1rem;
+            color: #044c06;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #1e3c72;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #2a5298;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <main>
+        <div class="success-box">
+            <h1>✅ Report Submitted Successfully!</h1>
+            <p>Thank you for submitting the missing child report. Authorities will review it soon.</p>
+            <a href="{% url 'missingchildreport' %}" class="btn">Submit Another Report</a>
+            <a href="{% url 'homepage' %}" class="btn">Go Back to Home</a>
+        </div>
+    </main>
+
+    {% include 'footer.html' %}
+</body>
+</html>
