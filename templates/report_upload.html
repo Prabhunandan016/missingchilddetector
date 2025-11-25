@@ -12,137 +12,226 @@
 
   <style>
     body {
-      font-family: "Poppins", sans-serif;
-      background-color: #f4f8fb;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f8fb;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
 
-    .container {
-      max-width: 900px;
-      margin: 50px auto;
-      background: #fff;
-      border-radius: 12px;
-      padding: 40px 50px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
+.container {
+  max-width: 900px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px 50px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
 
-    h1 {
-      text-align: center;
-      color: #1e3c72;
-      margin-bottom: 20px;
-    }
+h1 {
+  text-align: center;
+  color: #1e3c72;
+  margin-bottom: 20px;
+}
 
-    h3 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 30px;
-    }
+h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
 
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
 
-    form input[type="text"],
-    form input[type="tel"],
-    form input[type="file"],
-    form button {
-      font-size: 16px;
-      width: 80%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
+form input[type="text"],
+form input[type="tel"],
+form input[type="file"],
+form button {
+  font-size: 16px;
+  width: 80%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
 
-    form button {
-      background: linear-gradient(90deg, #1e3c72, #2a5298);
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
+form button {
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
 
-    form button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
+form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
-    .location-box {
-      margin-top: 20px;
-      background: #e8f4ff;
-      border: 1px solid #a1c8ff;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      color: #003366;
-      width: 80%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.location-box {
+  margin-top: 20px;
+  background: #e8f4ff;
+  border: 1px solid #a1c8ff;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: #003366;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    #map {
-      height: 350px;
-      width: 100%;
-      margin: 10px 0;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+#map {
+  height: 350px;
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-    #current-address-display {
-      font-weight: 500;
-      padding: 5px;
-      font-size: 1em;
-      color: #003366;
-      text-align: center;
-      width: 100%;
-    }
+#current-address-display {
+  font-weight: 500;
+  padding: 5px;
+  font-size: 1em;
+  color: #003366;
+  text-align: center;
+  width: 100%;
+}
 
-    .result {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: 600;
-    }
+.result {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
 
-    .images {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
+.images {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
 
-    .images img {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 3px solid #e0e0e0;
-    }
+.images img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 3px solid #e0e0e0;
+}
 
-    .matched-details {
-      background-color: #e6ffed;
-      border: 2px solid #1e7a1e;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 30px;
-    }
+.matched-details {
+  background-color: #e6ffed;
+  border: 2px solid #1e7a1e;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
 
-    .no-match {
-      background-color: #ffeaea;
-      border: 2px solid #ff4c4c;
-      color: #a10000;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 30px;
-      text-align: center;
-    }
+.no-match {
+  background-color: #ffeaea;
+  border: 2px solid #ff4c4c;
+  color: #a10000;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* 📱 Responsive Styling */
+@media (max-width: 992px) {
+  .container {
+    max-width: 90%;
+    margin: 30px auto;
+    padding: 30px 35px;
+  }
+
+  form input[type="text"],
+  form input[type="tel"],
+  form input[type="file"],
+  form button {
+    width: 90%;
+  }
+
+  .location-box {
+    width: 90%;
+  }
+
+  #map {
+    height: 300px;
+  }
+
+  .images img {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 95%;
+    margin: 20px auto;
+    padding: 25px 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  form {
+    gap: 12px;
+  }
+
+  form input[type="text"],
+  form input[type="tel"],
+  form input[type="file"],
+  form button {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .location-box {
+    width: 100%;
+    padding: 12px;
+  }
+
+  #map {
+    height: 250px;
+  }
+
+  .images {
+    gap: 15px;
+  }
+
+  .images img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .result {
+    font-size: 16px;
+  }
+
+  .matched-details,
+  .no-match {
+    font-size: 0.95rem;
+    padding: 15px;
+  }
+}
+
   </style>
 </head>
 <body>
