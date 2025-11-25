@@ -98,6 +98,11 @@ python -m venv venv
 
 3️⃣ Install Dependencies
 pip install -r requirements.txt
+pip install django
+pip install opencv-python
+pip install insightface onnxruntime
+python -m pip install --upgrade pip
+pip install insightface onnxruntime --no-cache-dir
 # (You may need to create this file first: pip freeze > requirements.txt)
 
 4️⃣ Run Migrations
@@ -114,4 +119,5 @@ The application will now be running at http://127.0.0.1:8000/
 
 Prabhu Nandan
 📧 Email: prabhunandan016@gmail.com
+
 
