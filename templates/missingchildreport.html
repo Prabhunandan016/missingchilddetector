@@ -5,98 +5,186 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Report Missing Child</title>
   <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", Arial, sans-serif;
-      background-color: #f9fafc;
-      color: #333;
-      line-height: 1.6;
-      padding: 0;
-    }
+    /* 🌐 Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(to bottom right, #f7f9fc, #ffffff);
+  color: #2d3748;
+  line-height: 1.7;
+  scroll-behavior: smooth;
+}
 
-    h1, h2 {
-      color: #1e3c72;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+/* 🔠 Headings */
+h1, h2 {
+  color: #1e3c72;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
 
-    form {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
+/* 🧾 Form Container */
+form {
+  max-width: 850px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 50px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
 
-    .form-section {
-      margin-bottom: 40px;
-    }
+form:hover {
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+/* 🪶 Form Layout */
+.form-section {
+  margin-bottom: 45px;
+}
 
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
+.form-group {
+  margin-bottom: 24px;
+}
 
-    label span.required {
-      color: red;
-      margin-left: 4px;
-    }
+/* 🏷️ Labels */
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #2d3e50;
+}
 
-    input[type="text"],
-    input[type="number"],
-    input[type="email"],
-    select,
-    input[type="file"] {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 15px;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
+label span.required {
+  color: #e63946;
+  margin-left: 4px;
+}
 
-    input:focus,
-    select:focus,
-    input[type="file"]:focus {
-      border-color: #1e3c72;
-      box-shadow: 0 0 6px rgba(30, 60, 114, 0.3);
-      outline: none;
-    }
+/* 🧍‍♂️ Inputs, Selects, Files */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 14px 15px;
+  border: 1px solid #cfd7e0;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #fdfdfd;
+  color: #2d3748;
+}
 
-    .btn-submit {
-      background: linear-gradient(90deg, #1e3c72, #2a5298);
-      color: #fff;
-      padding: 14px 32px;
-      font-size: 16px;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: block;
-      margin: 0 auto;
-    }
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
 
-    .btn-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
+input:focus,
+select:focus,
+textarea:focus,
+input[type="file"]:focus {
+  border-color: #2a5298;
+  box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.15);
+  outline: none;
+  background-color: #ffffff;
+}
 
-    select {
-      cursor: pointer;
-      appearance: none;
-    }
+/* 🎨 File input tweak */
+input[type="file"] {
+  padding: 8px;
+  background-color: #f7f9fc;
+}
 
-    input[type="file"] {
-      padding: 6px;
-    }
+/* ⬇️ Dropdown */
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #1e3c72 50%),
+                    linear-gradient(135deg, #1e3c72 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+                       calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+/* 🧿 Submit Button */
+.btn-submit {
+  background: linear-gradient(90deg, #2a5298, #4a7acb);
+  color: #fff;
+  padding: 14px 36px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 30px auto 0;
+  box-shadow: 0 6px 18px rgba(79, 120, 200, 0.35);
+}
+
+.btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(79, 120, 200, 0.5);
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+}
+
+/* 📱 Responsive Styles */
+@media (max-width: 768px) {
+  form {
+    margin: 30px 20px;
+    padding: 35px 25px;
+  }
+
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  select,
+  input[type="file"],
+  textarea {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  form {
+    margin: 20px 15px;
+    padding: 25px 20px;
+  }
+
+  h1, h2 {
+    font-size: 1.3rem;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 14px;
+  }
+}
+
   </style>
 </head>
 <body>
