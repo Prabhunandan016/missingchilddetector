@@ -6,110 +6,195 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Missing Child Portal - Home</title>
   <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", Arial, sans-serif;
-      background-color: #f9fafc;
-      color: #333;
-      line-height: 1.6;
-    }
+    /* ------------------ Global Styles ------------------ */
+body {
+  margin: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(to bottom right, #f6f8fb, #ffffff);
+  color: #222;
+  line-height: 1.7;
+  scroll-behavior: smooth;
+}
 
-    /* Hero Section */
-    .hero {
-      padding: 80px 40px 60px 40px;
-      text-align: center;
-      background: #ffffff;
-      margin-bottom: 40px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
+/* Container Utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
 
-    .hero h1 {
-      font-size: 40px;
-      color: #1e3c72;
-      margin-bottom: 20px;
-    }
+/* ------------------ Hero Section ------------------ */
+.hero {
+  padding: 90px 1.5rem 70px;
+  text-align: center;
+  background: linear-gradient(135deg, #ffffff, #eef2f9);
+  color: #1e3c72;
+  border-bottom: 3px solid #d7e2f2;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
 
-    .hero p {
-      font-size: 18px;
-      max-width: 700px;
-      margin: 0 auto 30px auto;
-      color: #555;
-    }
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #142850;
+}
 
-    .btn-primary {
-      background: linear-gradient(90deg, #1e3c72, #2a5298);
-      color: #fff;
-      padding: 12px 28px;
-      font-size: 16px;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
+.hero p {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  max-width: 700px;
+  margin: 0 auto 35px auto;
+  color: #4a5568;
+  line-height: 1.8;
+}
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
+.btn-primary {
+  background: linear-gradient(90deg, #2a5298, #4f78c8);
+  color: #fff;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 6px 18px rgba(79, 120, 200, 0.4);
+}
 
-    /* Sections */
-    section {
-      padding: 60px 40px;
-      max-width: 1200px;
-      margin: 0 auto 40px auto;
-      background: #ffffff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      border-radius: 8px;
-    }
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(79, 120, 200, 0.5);
+}
 
-    section h2 {
-      font-size: 28px;
-      color: #1e3c72;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+/* ------------------ Sections ------------------ */
+section {
+  background: #fff;
+  border-radius: 16px;
+  margin: 60px auto;
+  padding: 60px 2rem;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
 
-    section p {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 20px;
-    }
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
 
-    .useful-ways {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
+section h2 {
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  color: #1e3c72;
+  margin-bottom: 25px;
+  text-align: center;
+  position: relative;
+}
 
-    .way-card {
-      background: #f1f5f9;
-      padding: 20px;
-      border-radius: 12px;
-      flex: 1 1 250px;
-      max-width: 300px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+section h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #2a5298, #4f78c8);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
 
-    .way-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    }
+section p {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  line-height: 1.8;
+}
 
-    .way-card h3 {
-      color: #1e3c72;
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
+/* ------------------ Useful Ways Section ------------------ */
+.useful-ways {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
 
-    .way-card p {
-      font-size: 14px;
-      color: #555;
-    }
+.way-card {
+  background: #f8fafc;
+  padding: 25px 20px;
+  border-radius: 16px;
+  flex: 1 1 280px;
+  max-width: 320px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e5eaf0;
+}
+
+.way-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  background: #f1f6ff;
+}
+
+.way-card h3 {
+  color: #1e3c72;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.way-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ------------------ Responsive Design ------------------ */
+@media (max-width: 768px) {
+  .hero {
+    padding: 70px 1rem 60px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  section {
+    padding: 40px 1.25rem;
+    margin: 40px 1rem;
+  }
+
+  .useful-ways {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .way-card {
+    width: 90%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-primary {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+  }
+
+  section h2 {
+    font-size: 1.5rem;
+  }
+
+  section p {
+    font-size: 0.9rem;
+  }
+
+  .way-card {
+    padding: 20px 15px;
+  }
+}
+
   </style>
 </head>
 <body>
